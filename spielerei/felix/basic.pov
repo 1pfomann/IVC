@@ -6,7 +6,11 @@ camera {
 }
 
 media {
-  scattering { 1, rgb 0.03}
+  scattering {
+    1,
+    0.1
+    extinction 0.25
+  }
 }
 
 
@@ -22,11 +26,23 @@ light_source {
   color White
   spotlight
   radius 1
-  falloff 0.2
-  tightness 10
+  falloff 5
+  tightness 15
   media_interaction on
   media_attenuation on
   point_at <abs(sin(clock*pi)*25), 0, -25>
+}
+
+light_source {
+  <0.1, 25, -47.5>
+  color White
+  spotlight
+  radius 1
+  falloff 5
+  tightness 15
+  media_interaction on
+  media_attenuation on
+  point_at <25+cos(clock*pi*2)*5, 0, -25+sin(clock*pi*2)*5, >
 }
 
 
