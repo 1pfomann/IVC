@@ -62,9 +62,36 @@ light_source {
 }
 #end
 
+#for (i, 0, 500, 1) 
+light_source {
+  <0.1, 10, -47.5>
+  color rgb<0,3,0>
+  spotlight
+  radius 0.25
+  falloff 0.25
+  tightness 50
+  media_interaction on
+  media_attenuation on
+  point_at <15+25*sin(((pi/500)*i)+2*pi*clock), 0, -15+(-50/500)*i>
+}
+#end
+
+#for (i, 0, 500, 1) 
+light_source {
+  <0.1, 10, -2.5>
+  color rgb<0,3,0>
+  spotlight
+  radius 0.25
+  falloff 0.25
+  tightness 50
+  media_interaction on
+  media_attenuation on
+  point_at <15+25*sin(((pi/500)*i)+2*pi*clock), 0, 15+(-50/500)*i>
+}
+#end
 box {
-    <0, -1, 0>,  // Near lower left corner
-    <50, 0, -50>   // Far upper right corner
+    <-500, -1, 500>,  // Near lower left corner
+    <500, 0, -500>   // Far upper right corner
     texture {
       pigment { color White }
     }
