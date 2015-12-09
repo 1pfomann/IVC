@@ -21,7 +21,7 @@ sphere {
   }
 }
 
-light_source {
+/*light_source {
   <0.1, 25, -2.5>
   color White
   spotlight
@@ -31,8 +31,8 @@ light_source {
   media_interaction on
   media_attenuation on
   point_at <abs(sin(clock*pi)*25), 0, -25>
-}
-
+}*/
+//------------------------
 light_source {
   <0.1, 25, -47.5>
   color White
@@ -42,7 +42,62 @@ light_source {
   tightness 15
   media_interaction on
   media_attenuation on
-  point_at <25+cos(clock*pi*2)*5, 0, -25+sin(clock*pi*2)*5, >
+  point_at <25+cos(clock*pi*2+(0*pi/3))*15, 0, -25+sin(clock*pi*2+(0*pi*3))*15>
+}
+light_source {
+  <0.1, 25, -47.5>
+  color White
+  spotlight
+  radius 1
+  falloff 5
+  tightness 15
+  media_interaction on
+  media_attenuation on
+  point_at <25+cos(clock*pi*2+(pi/3))*15, 0, -25+sin(clock*pi*2+(pi/3))*15>
+}
+light_source {
+  <0.1, 25, -47.5>
+  color White
+  spotlight
+  radius 1
+  falloff 5
+  tightness 15
+  media_interaction on
+  media_attenuation on
+  point_at <25+cos(clock*pi*2+(2*pi/3))*15, 0, -25+sin(clock*pi*2+(2*pi/3))*15>
+}
+light_source {
+  <0.1, 25, -47.5>
+  color White
+  spotlight
+  radius 1
+  falloff 5
+  tightness 15
+  media_interaction on
+  media_attenuation on
+  point_at <25+cos(clock*pi*2+(3*pi/3))*15, 0, -25+sin(clock*pi*2+(3*pi/3))*15>
+}
+light_source {
+  <0.1, 25, -47.5>
+  color White
+  spotlight
+  radius 1
+  falloff 5
+  tightness 15
+  media_interaction on
+  media_attenuation on
+  point_at <25+cos(clock*pi*2+(4*pi/3))*15, 0, -25+sin(clock*pi*2+(4*pi*3))*15>
+}
+light_source {
+  <0.1, 25, -47.5>
+  color White
+  spotlight
+  radius 1
+  falloff 5
+  tightness 15
+  media_interaction on
+  media_attenuation on
+  point_at <25+cos(clock*pi*2+(5*pi/3))*15, 0, -25+sin(clock*pi*2+(5*pi/3))*15>
 }
 
 
