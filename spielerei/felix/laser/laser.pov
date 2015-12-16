@@ -34,10 +34,10 @@ sphere {
 }*/
 //------------------------
 
-#for (i, 0, 500, 1) 
+#for (i, 0, 500, 1)
 light_source {
   <0.1, 25, -47.5>
-  color rgb<0,3,0>
+  color rgb<0,10,0>
   spotlight
   radius 0.25
   falloff 0.25
@@ -48,10 +48,10 @@ light_source {
 }
 #end
 
-#for (i, 0, 500, 1) 
+#for (i, 0, 500, 1)
 light_source {
   <0.1, 25, -2.5>
-  color rgb<0,3,0>
+  color rgb<0,10,0>
   spotlight
   radius 0.25
   falloff 0.25
@@ -62,10 +62,10 @@ light_source {
 }
 #end
 
-#for (i, 0, 500, 1) 
+#for (i, 0, 500, 1)
 light_source {
   <0.1, 10, -47.5>
-  color rgb<0,3,0>
+  color rgb<0,10,0>
   spotlight
   radius 0.25
   falloff 0.25
@@ -76,10 +76,10 @@ light_source {
 }
 #end
 
-#for (i, 0, 500, 1) 
+#for (i, 0, 500, 1)
 light_source {
   <0.1, 10, -2.5>
-  color rgb<0,3,0>
+  color rgb<0,10,0>
   spotlight
   radius 0.25
   falloff 0.25
