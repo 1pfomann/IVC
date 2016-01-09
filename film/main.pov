@@ -4,4 +4,7 @@ global_settings {
     assumed_gamma 1
 }
 
-#include "camera.inc"
+#include "lightcolors.inc"
+
+#include "camera.pov"
+#include "buehne.pov"
