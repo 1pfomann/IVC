@@ -4,7 +4,6 @@
 #declare TowerHeight=4.15*5+0.5;
 
 
-sky_sphere { S_Cloud1 }
 
 plane { y, 0 pigment { color red 0.1 green 0.1 blue 0.1} }
 
@@ -12,9 +11,6 @@ plane { y, 0 pigment { color red 0.1 green 0.1 blue 0.1} }
   box {
     <0, 0, 0>
     <0.5, TowerHeight, 0.7>
-    texture {
-      pigment { color Black }
-    }
   }
   #for (i, 1, 5, 2)
     cylinder {
@@ -23,37 +19,28 @@ plane { y, 0 pigment { color red 0.1 green 0.1 blue 0.1} }
       4
       rotate <0,0,90>
       translate <0,i*4.4,5>
-      texture {
-        pigment { color Black }
-      }
     }
   #end
   torus {
     4.15, 0.35
     rotate <0,0,90>
     translate<0.25,4.4,5>
-    texture {
-      pigment { color CTower1 }
-    }
-    finish { ambient 5 }
+    pigment { color C_TowerBot }
+    finish {ambient 1}
   }
   torus {
     4.15,.35
     rotate <0,0,90>
     translate<0.25,3*4.4,5>
-    texture {
-      pigment { color CTower2 }
-    }
-    finish { ambient 5 }
+    pigment { color C_TowerMid }
+    finish {ambient 1}
   }
   torus {
     4.15,0.35
     rotate <0,0,90>
     translate<0.25,5*4.4,5>
-    texture {
-      pigment { color CTower3 }
-    }
-    finish { ambient 5 }
+    pigment { color C_TowerHi }
+    finish {ambient 1}
   }
 
 }
@@ -71,10 +58,8 @@ plane { y, 0 pigment { color red 0.1 green 0.1 blue 0.1} }
     7.5,0.5
     rotate <90,0,0>
     translate<25,4,0>
-    texture {
-      pigment { color CTower1 }
-    }
-    finish { ambient 5 }
+    pigment { color C_Speaker4 }
+    finish {ambient 1}
   }
   cylinder {
     <0,0,0>,
@@ -82,53 +67,39 @@ plane { y, 0 pigment { color red 0.1 green 0.1 blue 0.1} }
     7.5
     rotate <90,0,0>
     translate <25,4,0>
-    texture {
-      pigment { color Black }
-    }
   }
   torus {
     6,0.4
     rotate <90,0,0>
     translate<25,4,0>
-    texture {
-      pigment { color CTower2 }
-    }
-    finish { ambient 5 }
+    pigment { color C_Speaker3 }
+    finish {ambient 1}
   }
   torus {
     4.5,0.3
     rotate <90,0,0>
     translate<25,4,0>
-    texture {
-      pigment { color CTower3 }
-    }
-    finish { ambient 5 }
+    pigment { color C_Speaker2 }
+    finish {ambient 1}
   }
   torus {
     3,0.2
     rotate <90,0,0>
     translate<25,4,0>
-    texture {
-      pigment { color CTower4 }
-    }
-    finish { ambient 5 }
+    pigment { color C_Speaker1 }
+    finish {ambient 1}
   }
   sphere {
     <0,0,0>, 2
     rotate <90,0,0>
     translate<25,4,0>
-    texture {
-      pigment { color CTower5 }
-    }
-    finish { ambient 5 }
+    pigment { color C_Speaker0 }
+    finish {ambient 1}
   }
   cylinder {
     <0,0,0>,
     <0,0.1,0>,
     4
-    texture {
-      pigment { color Black }
-    }
     rotate <90,0,0>
     translate <37,2,0>
   }
@@ -136,10 +107,8 @@ plane { y, 0 pigment { color red 0.1 green 0.1 blue 0.1} }
     4,1
     rotate <90,0,0>
     translate<37,2,0>
-    texture {
-      pigment { color CTower6 }
-    }
-    finish { ambient 5 }
+    pigment { color C_Screen }
+    finish {ambient 1}
   }
 }
 
@@ -151,9 +120,51 @@ torus {
   5+i/4,0.5
   rotate <90,0,0>
   translate<50,2,0-i/2>
-  texture {
-    pigment { color Red*i/4 }
-  }
 }
 #end
 
+box {
+  <42,0,1>
+  <58,0.6,-3>
+}
+box {
+  <47.5,0,0>
+  <52.5,1.2,-2.5>
+}
+box {
+  <49,1.2,-1>
+  <51,2.4,-1.5>
+}
+
+#macro stageled (v_start, v_end)
+  cylinder {
+    v_start,
+    v_end,
+    0.05
+    pigment { color C_Stageled }
+    finish {ambient 1}
+  }
+#end
+
+stageled(<49,2.4,-1.5>, <51,2.4,-1.5>)
+stageled(<49,2.4,-1.5>, <49,2.4,-1>)
+stageled(<51,2.4,-1.5>, <51,2.4,-1>)
+
+stageled(<49,2.4,-1.5>, <49,1.2,-1.5>)
+stageled(<51,2.4,-1.5>, <51,1.2,-1.5>)
+
+
+stageled(<47.5,1.2,-2.5>, <52.5,1.2,-2.5>)
+stageled(<47.5,1.2,-2.5>, <47.5,1.2,0>)
+stageled(<52.5,1.2,-2.5>, <52.5,1.2,0>)
+
+stageled(<47.5,1.2,-2.5>, <47.5,0.6,-2.5>)
+stageled(<52.5,1.2,-2.5>, <52.5,0.6,-2.5>)
+
+
+stageled(<42,0.6,-3>, <58,0.6,-3>)
+stageled(<42,0.6,-3>, <42,0.6,1>)
+stageled(<58,0.6,-3>, <58,0.6,1>)
+
+stageled(<42,0.6,-3>, <42,0,-3>)
+stageled(<58,0.6,-3>, <58,0,-3>)
