@@ -3,38 +3,38 @@
 #include "textures.inc"
 #include "stars.inc"
 
-#declare Camera = -3000;
-#declare Legs = 100;
+#declare Camera = -3;
+#declare Legs = 0.1;
 #declare Cloth = Black;
-#declare Jump = <0, 300*sin(pi*clock), 0>;
+#declare Jump = <0, 0.3*sin(pi*clock), 0>;
 
 // Left Arm
-#declare Intersection_Left_Shoulder = <-200, 1450, 0>;
-#declare Intersection_Left_Arm = vnormalize(<-4+-sin(2*pi*clock), 3+-sin(2*pi*clock), 0>)*300+Intersection_Left_Shoulder;
-#declare Left_Hand = vnormalize(<1+0.5*sin(2*pi*clock), 2+sin(2*pi*clock), 0>)*250+Intersection_Left_Arm;
+#declare Intersection_Left_Shoulder = <-0.200, 1.450, 0>;
+#declare Intersection_Left_Arm = vnormalize(<-4+-sin(2*pi*clock), 3+-sin(2*pi*clock), 0>)*0.300+Intersection_Left_Shoulder;
+#declare Left_Hand = vnormalize(<1+0.5*sin(2*pi*clock), 2+sin(2*pi*clock), 0>)*0.250+Intersection_Left_Arm;
 
 //Right Arm
-#declare Intersection_Right_Shoulder = <200, 1450, 0>;
-#declare Intersection_Right_Arm = vnormalize(<4+sin(2*pi*clock), 3+-sin(2*pi*clock), 0>)*300+Intersection_Right_Shoulder;
-#declare Right_Hand = vnormalize(<-1-0.5*sin(2*pi*clock), 2+sin(2*pi*clock), 0>)*250+Intersection_Right_Arm;
+#declare Intersection_Right_Shoulder = <0.200, 1.450, 0>;
+#declare Intersection_Right_Arm = vnormalize(<4+sin(2*pi*clock), 3+-sin(2*pi*clock), 0>)*0.300+Intersection_Right_Shoulder;
+#declare Right_Hand = vnormalize(<-1-0.5*sin(2*pi*clock), 2+sin(2*pi*clock), 0>)*0.250+Intersection_Right_Arm;
 
 // camera and light
 camera {
-  //location <-Camera*sin(2*pi*clock), 3000, -Camera*cos(2*pi*clock)>
-  location <0, 3000, -Camera>
-  look_at <0, 1000, 0>
+  //location <-Camera*sin(2*pi*clock), 3, -Camera*cos(2*pi*clock)>
+  location <0, 3, -Camera>
+  look_at <0, 1, 0>
   right x*image_width/image_height
 }
 
 box {
-  <25000, 0, 25000>, <-25000, 0, -25000>
+  <25, 0, 25>, <-25, 0, -25>
   texture{
     pigment{ Jade }
   }
 }
 
 light_source{
-  <10000,20000,  0>
+  <10 ,20 ,  0>
   color White
 }
 
@@ -50,23 +50,24 @@ sky_sphere{
       [1.00 color rgb<0.24,0.32,1> *0.3 ]
     }
 
-    scale 2000
-    rotate <-20,0,0>
-    translate <0,0.7,0>
+    scale 2
+    rotate <-0.020,0,0>
+    translate <0,0.0007,0>
   }
 }
+
 
 union {
   // Cap
   union {
     intersection {
-      sphere { <0, 0, 0>, 90 scale <0.9, 1, 1.1> }
-      box { <100, 0, 100>, <-100, -100, -100> inverse }
+      sphere { <0, 0, 0>, 0.090 scale <0.9, 1, 1.1> }
+      box { <0.100, 0, 0.100>, <-0.100, -0.100, -0.100> inverse }
 
     }
-    sphere { <0, 0, 0>, 90 scale <1, 0.05, 1> translate <0, 0, 60> }
+    sphere { <0, 0, 0>, 0.090 scale <1, 0.05, 1> translate <0, 0, 0.060> }
 
-    translate <0, 1690, 0>
+    translate <0, 1.690, 0>
     texture {
       pigment { color Blue }
     }
@@ -74,8 +75,8 @@ union {
 
   // head
   sphere {
-    <0, 1650, 0>, 100
-    scale <0.80, 1, 1>
+    <0, 1.650, 0>, 0.100
+    scale <0.8, 1, 1>
     texture{
       pigment{ color Flesh }
     }
@@ -83,7 +84,7 @@ union {
 
   // neck
   cylinder {
-    <0, 1600, 0>, <0, 1450, 0>, 45
+    <0, 1.600, 0>, <0, 1.450, 0>, 0.045
     texture{
       pigment{ color Flesh }
     }
@@ -92,8 +93,8 @@ union {
   // torus
   superellipsoid{
     <0.25, 1.00>
-    scale <220, 350, 120>
-    translate <0. 1150, 0>
+    scale <0.220, 0.350, 0.120>
+    translate <0. 1.150, 0>
     texture{
       pigment{ color Red }
     }
@@ -101,35 +102,35 @@ union {
 
   // right arm
   sphere {
-    Intersection_Right_Shoulder, 45
+    Intersection_Right_Shoulder, 0.045
     texture {
       pigment { color Cloth }
     }
   }
 
   cylinder {
-    Intersection_Right_Shoulder, Intersection_Right_Arm, 45
+    Intersection_Right_Shoulder, Intersection_Right_Arm, 0.045
     texture {
       pigment { color Cloth }
     }
   }
 
   sphere {
-    Intersection_Right_Arm, 45
+    Intersection_Right_Arm, 0.045
     texture {
       pigment { color Cloth }
     }
   }
 
   cylinder {
-    Intersection_Right_Arm, Right_Hand, 45
+    Intersection_Right_Arm, Right_Hand, 0.045
     texture {
       pigment { color Flesh }
     }
   }
 
   sphere {
-    Right_Hand, 75
+    Right_Hand, 0.075
     texture {
       pigment { color Flesh }
     }
@@ -137,35 +138,35 @@ union {
 
   // left arm
   sphere {
-    Intersection_Left_Shoulder, 45
+    Intersection_Left_Shoulder, 0.045
     texture {
       pigment{ color Cloth }
     }
   }
 
   cylinder {
-    Intersection_Left_Shoulder, Intersection_Left_Arm, 45
+    Intersection_Left_Shoulder, Intersection_Left_Arm, 0.045
     texture {
       pigment { color Cloth }
     }
   }
 
   sphere {
-    Intersection_Left_Arm, 45
+    Intersection_Left_Arm, 0.045
     texture {
       pigment { color Cloth }
     }
   }
 
   cylinder {
-    Intersection_Left_Arm, Left_Hand, 45
+    Intersection_Left_Arm, Left_Hand, 0.045
     texture {
       pigment { color Flesh }
     }
   }
 
   sphere {
-    Left_Hand, 75
+    Left_Hand, 0.075
     texture {
       pigment { color Flesh }
     }
@@ -173,50 +174,49 @@ union {
 
   // right leg
   cone {
-    <-Legs, 850, 0>, 75, <-Legs, 100, 0>, 40
+    <-Legs, 0.850, 0>, 0.075, <-Legs, 0.100, 0>, 0.040
     texture{
       pigment{ color Cloth }
     }
   }
 
   prism {
-    0, 100, 6,
+    0, 0.100, 6,
     <0, 0>,
-    <0, 300>,
-    <50, 300>,
-    <100, 100>,
-    <100, 0>,
+    <0, 0.300>,
+    <0.050, 0.300>,
+    <0.100, 0.100>,
+    <0.100, 0>,
     <0, 0>
     texture{
       pigment{ color Cloth }
     }
     rotate <0, 0, 90>
-    translate <Legs+50, 0, -50>
+    translate <Legs+0.050, 0, -0.050>
   }
 
   // left leg
   cone {
-    <Legs, 850, 0>, 75, <Legs, 100, 0>, 40
+    <Legs, 0.850, 0>, 0.075, <Legs, 0.100, 0>, 0.040
     texture{
       pigment{ color Cloth }
     }
   }
 
   prism {
-    0, 100, 6,
+    0, 0.100, 6,
     <0, 0>,
-    <0, 300>,
-    <50, 300>,
-    <100, 100>,
-    <100, 0>,
+    <0, 0.300>,
+    <0.050, 0.300>,
+    <0.100, 0.100>,
+    <0.100, 0>,
     <0, 0>
     texture{
       pigment{ color Cloth }
     }
     rotate <0, 0, 90>
-    translate <-Legs+50, 0, -50>
+    translate <-Legs+0.050, 0, -0.050>
   }
 
   translate Jump
 }
-
