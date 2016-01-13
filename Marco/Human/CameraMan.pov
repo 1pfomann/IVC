@@ -5,16 +5,20 @@
 #declare Legs = 0.1;
 #declare Cloth = Black;
 
-#declare JumpingMan=
+#declare CameraMan=
   // Left Arm
   #declare Intersection_Left_Shoulder = <-0.200, 1.450, 0>;
-  #declare Intersection_Left_Arm = vnormalize(<-4+-sin(2*pi*clock), 3+-sin(2*pi*clock), sin(2*pi*clock)>)*0.300+Intersection_Left_Shoulder;
-  #declare Left_Hand = vnormalize(<1+0.5*sin(2*pi*clock), 2+sin(2*pi*clock), 1.5*sin(2*pi*clock)>)*0.250+Intersection_Left_Arm;
+  #declare Intersection_Left_Arm = vnormalize(<-1.5, 3, 0.5>)*0.300+Intersection_Left_Shoulder;
+  #declare Left_Hand = vnormalize(<2.5, 2, 0.5>)*0.250+Intersection_Left_Arm;
 
   //Right Arm
   #declare Intersection_Right_Shoulder = <0.200, 1.450, 0>;
-  #declare Intersection_Right_Arm = vnormalize(<4+sin(2*pi*clock), 3+-sin(2*pi*clock), sin(2*pi*clock)>)*0.300+Intersection_Right_Shoulder;
-  #declare Right_Hand = vnormalize(<-1-0.5*sin(2*pi*clock), 2+sin(2*pi*clock), 1.5*sin(2*pi*clock)>)*0.250+Intersection_Right_Arm;
+  #declare Intersection_Right_Arm = vnormalize(<1.5, 3, 0.5>)*0.300+Intersection_Right_Shoulder;
+  #declare Right_Hand = vnormalize(<-2.5, 2, 0.5>)*0.250+Intersection_Right_Arm;
+
+  #declare Mobile_Phone_Left = Left_Hand+<0.020, 0, -0.005>;
+  #declare Mobile_Phone_Right = Right_Hand+<-0.020, 0.11, 0.005>;
+
   union {
     // Cap
     union {
@@ -25,7 +29,8 @@
       }
       sphere { <0, 0, 0>, 0.090 scale <1, 0.05, 1> translate <0, 0, 0.060> }
 
-      translate <0, 1.690, 0>
+      rotate <-45, 0, 0>
+      translate <0, 1.690, -0.01>
       texture {
         pigment { color Blue }
       }
@@ -130,6 +135,26 @@
       }
     }
 
+    // mobile phone
+    box {
+      Mobile_Phone_Left, Mobile_Phone_Right
+      texture {
+        pigment { color Black }
+      }
+    }
+
+    light_source {
+      Mobile_Phone_Left+<0.02, 0.02, -0.5>
+      color Green
+      spotlight
+      point_at <0, 1, 5>
+      radius 0.50
+      falloff 0.10
+      tightness 50
+      media_interaction on
+      media_attenuation on
+    }
+
     // right leg
     cone {
       <-Legs, 0.850, 0>, 0.075, <-Legs, 0.100, 0>, 0.040
@@ -181,10 +206,15 @@
 #declare Random1=seed (1337);
 #declare Random2=seed (2342);
 
-#while (Fans < 10000)
-  object{
-    JumpingMan
-    translate <max(min(Rand_Gauss(0, 30, Random1),100),-100), rand(Random1)*0.3*abs(sin(pi*clock+rand(Random2))), min(abs(Rand_Gauss(0, 60 , Random2)),200)>
-  }
-  #declare Fans=Fans+1;
-#end
+object{
+  CameraMan
+  translate <-0.5, 0, -0.5>
+}
+
+//#while (Fans < 10000)
+//  object{
+//    CameraMan
+//    translate <max(min(Rand_Gauss(0, 30, Random1),100),-100), rand(Random1)*0.3*abs(sin(pi*clock+rand(Random2))), min(abs(Rand_Gauss(0, 60 , Random2)),200)>
+//  }
+//  #declare Fans=Fans+1;
+//#end
