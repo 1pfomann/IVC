@@ -1,47 +1,63 @@
 
-#declare lasercount=100;
+#declare lasercount=int(100*abs(sin(clock*pi)));
 #declare lasercolor=rgb<0,1,0>;
 
 #macro lasercalc1 (i)
-  <(lasercount/2-i), 0, -100>
+  <(lasercount/2-i), 0, -10>
 #end
 
 #macro lasercalc2 (i)
   <(lasercount/2-i)*(0.5+sin(clock)*0.5), (lasercount/2-i)*(sin(4*pi*clock)*2), -100>
 #end
 
-
-#for (i, 0, lasercount, 1)
+#macro laser (source, lasercolor)
 light_source {
-  <0, 0,  0>
-  color C_Lasers
+  <0,0,0>
+  color lasercolor
   spotlight
   radius 0.10
   falloff 0.10
   tightness 50
   media_interaction on
   media_attenuation on
-  point_at lasercalc1(i)
-  fade_power 1
-  fade_distance 50
-  rotate <22.5*sin(clock*2*pi),0,0>
-  translate <37, 2, 0>
+  point_at <0,0,-100>
+  rotate <22.5+22.5*sin(clock*2*pi),i,0>
+  translate source
 }
 #end
-#for (i, 0, lasercount, 1)
-light_source {
-  <0, 0,  0>
-  color C_Lasers
-  spotlight
-  radius 0.10
-  falloff 0.10
-  tightness 50
-  media_interaction on
-  media_attenuation on
-  point_at lasercalc1(i)
-  fade_power 1
-  fade_distance 50
-  rotate <22.5*sin(clock*2*pi),0,0>
-  translate <63, 2, 0>
-}
+
+#if (ON_RGBLaser)
+  #for (i, 0, lasercount, 1)
+  laser(<37,2,-0.05>, C_RGBLaser)
+  #end
+
+  #for (i, 0, lasercount, 1)
+  laser(<63,2,-0.05>, C_RGBLaser)
+  #end
+#end
+
+#if (ON_Laser)
+  #for (i, 0, lasercount, 1)
+  laser(<5,1*4.4,-0.05>, C_Laser)
+  #end
+
+  #for (i, 0, lasercount, 1)
+  laser(<95,1*4.4,-0.05>, C_Laser)
+  #end
+
+  #for (i, 0, lasercount, 1)
+  laser(<5,3*4.4,-0.05>, C_Laser)
+  #end
+
+  #for (i, 0, lasercount, 1)
+  laser(<95,3*4.4,-0.05>, C_Laser)
+  #end
+
+  #for (i, 0, lasercount, 1)
+  laser(<5,5*4.4,-0.05>, C_Laser)
+  #end
+
+  #for (i, 0, lasercount, 1)
+  laser(<95,5*4.4,-0.05>, C_Laser)
+  #end
 #end

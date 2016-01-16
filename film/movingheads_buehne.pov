@@ -1,6 +1,6 @@
 
 #for (i,0,10,1)
-#local lclock=clock-i*0.1;
+#local lclock=clock;//-i*0.1;
 light_source {
   <50+cos(pi*(i/10))*5.45,2+sin(pi*(i/10))*5.45,-2.5>
   color C_MovingHeads
