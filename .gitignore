@@ -1,4 +1,4 @@
 *.png
-//*.mp4
+*.mp4
 *.pov-state
 *.swp
