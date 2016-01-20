@@ -10,7 +10,7 @@ global_settings {
 //sky_sphere { S_Cloud1 }
 
 
-/*sky_sphere {
+sky_sphere {
   pigment {
     bozo
     color_map {
@@ -20,13 +20,13 @@ global_settings {
     }
     scale .006
   }
-}*/
+}
 
-/*light_source {
+light_source {
   <50,100,-50>
   color rgb<0.1,0.1,0.1>
   media_interaction off
-}*/
+}
 
 /*media {
   scattering {
@@ -52,9 +52,15 @@ box{<-50,-2,10>,<150,150,-150> pigment{rgbt 1}
   }
   hollow
 }
+#include "helpers.inc"
+#include "lightcolors.inc"
+#include "switches.inc"
 
-plane { y, 0 pigment { color red 0.1 green 0.1 blue 0.1} }
-//#include "lightcolors.inc"
-#include "camera.pov"
+#include "camera2.pov"
+//#include "lasers.pov"
+#include "buehne.pov"
+//#include "movingheads_buehne.pov"
+//#include "movingheads_tower.pov"
+//#include "firework.pov"
+#include "dj.pov"
 #include "fans.pov"
-

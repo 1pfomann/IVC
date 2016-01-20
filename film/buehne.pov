@@ -123,6 +123,17 @@ torus {
 }
 #end
 
+#declare dj_pult=texture {
+  uv_mapping
+  pigment {
+    image_map {
+      jpeg "dj_pult_long.jpg"
+      map_type 0
+      interpolate 2
+    }
+  }
+}
+
 box {
   <42,0,1>
   <58,0.6,-3>
@@ -134,6 +145,11 @@ box {
 box {
   <49,1.2,-1>
   <51,2.4,-1.5>
+}
+box {
+  <49.5, 2.4, -1.4>
+  <50.5, 2.45, -1.15>
+  texture{ dj_pult }
 }
 
 #macro stageled (v_start, v_end)
