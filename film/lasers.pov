@@ -1,23 +1,43 @@
 
 //#declare lasercount=int(100*abs(sin(clock*pi)));
-#declare lasercount=10;//int(100*abs(sin(clock*pi)));
+#declare lasercount=1+(sin(clock*pi)+1)*25;//int(100*abs(sin(clock*pi)));
+//#declare lasercount=50;//(sin(clock*pi*2)+1)*25;//int(100*abs(sin(clock*pi)));
 #declare lasercolor=rgb<0,1,0>;
-#declare lasermode=1;
+#local Rand_Lasermode = seed(clock+23);
+#declare lasermode_rotate=int(rand(Rand_Lasermode)*3);
+#declare lasermode_tilt=int(rand(Rand_Lasermode)*3);
 
-#local laser_rotate = function(mode) {
-  #switch (lasermode)
-    #case(1)
+#debug concat("CLK:", str(clock, 0,2), "\n")
+#debug concat("CLKi:", str(int(clock), 0,2), "\n")
+#debug concat("ROT:", str(lasermode_rotate, 0,2), "\n")
+#debug concat("TILT:", str(lasermode_tilt, 0,2), "\n")
+
+#local laser_rotate = function(i) {
+  #switch (lasermode_rotate)
+    #case(0)
       0
+    #break
+    #case(1)
+      360*clock
+    #break
+    #case(2)
+      sin(clock*pi)*45
     #break
   #else
     0
   #end
 }
 
-#local laser_tilt = function(mode) {
-  #switch (lasermode)
+#local laser_tilt = function(i) {
+  #switch (lasermode_tilt)
+    #case(0)
+      0
+    #break
     #case(1)
-      22.5+sin(clock)*22.5
+      22.5+sin(clock*3*pi)*22.5
+    #break
+    #case(2)
+      10+sin(i/lasercount*pi*2+(clock/5))*10
     #break
   #else
     0
@@ -36,9 +56,9 @@ light_source {
   media_attenuation on
   point_at <0,0,-100>
   //rotate <22.5+22.5*sin(clock*2*pi),i,0>
-  rotate <0,i-(lasercount/2),0>    //Spread
-  rotate <0,0,laser_rotate(lasermode)>  //Rotate
-  rotate <laser_tilt(lasermode),0,0> //Tilt
+  rotate <0,(i-(lasercount/2))/2,0>    //Spread
+  rotate <0,0,laser_rotate(i)>  //Rotate
+  rotate <laser_tilt(i),0,0> //Tilt
   translate source
 }
 #end
