@@ -27,7 +27,7 @@
 
       translate <0, 1.690, 0>
       texture {
-        pigment { color Blue }
+        pigment { color Cloth }
       }
     }
 
@@ -54,7 +54,7 @@
       scale <0.220, 0.350, 0.120>
       translate <0. 1.150, 0>
       texture{
-        pigment{ color Red }
+        pigment{ color Cloth }
       }
     }
 
@@ -177,14 +177,3 @@
     }
   }
 
-#declare Fans=0;
-#declare Random1=seed (1337);
-#declare Random2=seed (2342);
-
-#while (Fans < 10000)
-  object{
-    JumpingMan
-    translate <max(min(Rand_Gauss(0, 30, Random1),100),-100), rand(Random1)*0.3*abs(sin(pi*clock+rand(Random2))), min(abs(Rand_Gauss(0, 60 , Random2)),200)>
-  }
-  #declare Fans=Fans+1;
-#end

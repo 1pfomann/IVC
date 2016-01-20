@@ -8,14 +8,15 @@
 #declare CameraMan=
   // Left Arm
   #declare Intersection_Left_Shoulder = <-0.200, 1.450, 0>;
-  #declare Intersection_Left_Arm = vnormalize(<-1.5, 3, 0.5>)*0.300+Intersection_Left_Shoulder;
-  #declare Left_Hand = vnormalize(<2.5, 2, 0.5>)*0.250+Intersection_Left_Arm;
+  #declare Intersection_Left_Arm = vnormalize(<-1.5, 6, 0.5>)*0.300+Intersection_Left_Shoulder;
+  #declare Left_Hand = vnormalize(<2.5, 4, 0.5>)*0.250+Intersection_Left_Arm;
 
   //Right Arm
   #declare Intersection_Right_Shoulder = <0.200, 1.450, 0>;
-  #declare Intersection_Right_Arm = vnormalize(<1.5, 3, 0.5>)*0.300+Intersection_Right_Shoulder;
-  #declare Right_Hand = vnormalize(<-2.5, 2, 0.5>)*0.250+Intersection_Right_Arm;
+  #declare Intersection_Right_Arm = vnormalize(<1.5, 6, 0.5>)*0.300+Intersection_Right_Shoulder;
+  #declare Right_Hand = vnormalize(<-2.5, 4, 0.5>)*0.250+Intersection_Right_Arm;
 
+  // Mobile Phone
   #declare Mobile_Phone_Left = Left_Hand+<0.020, 0, -0.005>;
   #declare Mobile_Phone_Right = Right_Hand+<-0.020, 0.11, 0.005>;
 
@@ -32,7 +33,7 @@
       rotate <-45, 0, 0>
       translate <0, 1.690, -0.01>
       texture {
-        pigment { color Blue }
+        pigment { color Cloth }
       }
     }
 
@@ -59,7 +60,7 @@
       scale <0.220, 0.350, 0.120>
       translate <0. 1.150, 0>
       texture{
-        pigment{ color Red }
+        pigment{ color Cloth }
       }
     }
 
@@ -144,13 +145,15 @@
     }
 
     light_source {
-      Mobile_Phone_Left+<0.02, 0.02, -0.5>
-      color Green
+      Mobile_Phone_Left+<0.05, 0.05, 0.051>
+      color rgb<1,1,1>
       spotlight
-      point_at <0, 1, 5>
-      radius 0.50
-      falloff 0.10
-      tightness 50
+      point_at <0, 30, 100>
+      radius 80
+      //falloff 20
+      tightness 100
+      fade_distance 1.5
+      fade_power 6
       media_interaction on
       media_attenuation on
     }
@@ -202,19 +205,3 @@
     }
   }
 
-#declare Fans=0;
-#declare Random1=seed (1337);
-#declare Random2=seed (2342);
-
-object{
-  CameraMan
-  translate <-0.5, 0, -0.5>
-}
-
-//#while (Fans < 10000)
-//  object{
-//    CameraMan
-//    translate <max(min(Rand_Gauss(0, 30, Random1),100),-100), rand(Random1)*0.3*abs(sin(pi*clock+rand(Random2))), min(abs(Rand_Gauss(0, 60 , Random2)),200)>
-//  }
-//  #declare Fans=Fans+1;
-//#end
