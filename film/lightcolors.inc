@@ -1,6 +1,6 @@
 #local LightColorRand = seed(clock);
 #local MainColorArray =
-array[7] {
+array[9] {
   <1,0,0>,
   <0,1,0>,
   <0,0,1>,
@@ -8,9 +8,11 @@ array[7] {
   <1,0,1>,
   <0,1,1>,
   <1,1,1>,
+  <1,0.5,0>,
+  <1,0,0.5>,
 };
 
-#declare MainColor = MainColorArray[int(rand(LightColorRand)*7)];
+#declare MainColor = MainColorArray[int(rand(LightColorRand)*9)];
 
 #declare C_Stageled=MainColor*25;
 

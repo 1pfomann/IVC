@@ -34,6 +34,17 @@
   #end
 #end
 
+#declare Rand_Fire = seed(320498);
+
+#for (i, 0, 100, 1)
+  rocket(66+rand(Rand_Fire)*26, rand(Rand_Fire)*100, <1,1,1>)
+#end
+
+#for (i, 0, 200, 1)
+  rocket(117+rand(Rand_Fire)*55, rand(Rand_Fire)*100, <1,1,1>)
+#end
+
+/*
 rocket (0.0, 0, <1,0.2,0.04>)
 rocket (0.1, 10, <1,0.2,0.04>)
 rocket (0.2, 20, <1,0.2,0.04>)
@@ -55,3 +66,4 @@ rocket (1.7, 30, <1,0.2,0.04>)
 rocket (1.8, 20, <1,0.2,0.04>)
 rocket (1.9, 10, <1,0.2,0.04>)
 rocket (2.0, 0, <1,0.2,0.04>)
+*/
