@@ -1,0 +1,25 @@
+; POV-Ray animation ini file
+Antialias=Off
+Antialias_Threshold=0.1
+Antialias_Depth=4
+
+Input_File_Name="main.pov"
+Output_File_Name="./output/"
+
+Initial_Frame=1
+Final_Frame=30
+Initial_Clock=0
+Final_Clock=1
+
+Cyclic_Animation=on
+Pause_when_Done=off
+Display=off
+Render_Console=off
+Statistic_Console=off
+Debug_Console=on
+Fatal_Console=on
+Warning_Console=on
+
++W533 +H300
+;+W200 +H150
+;+W1920 +H1080
