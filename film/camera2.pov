@@ -3,7 +3,7 @@
 //Debug Camera placed centered in the rear area of the dancefloor
 camera {
 //    location <40+sin(clock/2*pi)*20, 2, -70+sin(clock/2*pi)*-20>
-    location <50, 2, -70>
+    location <50, 9, -70>
     look_at <50, 5, 0>
 //    Correct aspect ratio of camera
     right x*image_width/image_height
