@@ -57,8 +57,10 @@ box{<-50,-2,10>,<150,150,-150> pigment{rgbt 1}
 #include "switches.inc"
 
 #include "camera.pov"
-#include "lasers.pov"
+//#include "lasers.pov"
 #include "buehne.pov"
 //#include "movingheads_buehne.pov"
-#include "movingheads_tower.pov"
+//#include "movingheads_tower.pov"
 //#include "firework.pov"
+#include "dj.pov"
+#include "fans.pov"
