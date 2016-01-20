@@ -1,14 +1,28 @@
 
-#declare lasercount=int(100*abs(sin(clock*pi)));
+//#declare lasercount=int(100*abs(sin(clock*pi)));
+#declare lasercount=10;//int(100*abs(sin(clock*pi)));
 #declare lasercolor=rgb<0,1,0>;
+#declare lasermode=1;
 
-#macro lasercalc1 (i)
-  <(lasercount/2-i), 0, -10>
-#end
+#local laser_rotate = function(mode) {
+  #switch (lasermode)
+    #case(1)
+      0
+    #break
+  #else
+    0
+  #end
+}
 
-#macro lasercalc2 (i)
-  <(lasercount/2-i)*(0.5+sin(clock)*0.5), (lasercount/2-i)*(sin(4*pi*clock)*2), -100>
-#end
+#local laser_tilt = function(mode) {
+  #switch (lasermode)
+    #case(1)
+      22.5+sin(clock)*22.5
+    #break
+  #else
+    0
+  #end
+}
 
 #macro laser (source, lasercolor)
 light_source {
@@ -21,7 +35,10 @@ light_source {
   media_interaction on
   media_attenuation on
   point_at <0,0,-100>
-  rotate <22.5+22.5*sin(clock*2*pi),i,0>
+  //rotate <22.5+22.5*sin(clock*2*pi),i,0>
+  rotate <0,i-(lasercount/2),0>    //Spread
+  rotate <0,0,laser_rotate(lasermode)>  //Rotate
+  rotate <laser_tilt(lasermode),0,0> //Tilt
   translate source
 }
 #end
