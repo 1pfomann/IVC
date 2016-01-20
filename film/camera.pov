@@ -69,62 +69,68 @@
 //}
 
 
-#declare lclock = clock;
-#switch(lclock)
-#case (lclock < 1)
-//camera1
-camera {
-    location <50+20*sin(clock*5), 2, -70>
-    look_at <50, 5, 0>
-    right x*image_width/image_height
-}
-#case (lclock < 2)
-//camera8
-camera {
-    location<45+clock*2, 5, -(6+clock*50)>
-    look_at <50, 2, -35>
-    right (x*image_width/image_height)/2
-}
-#case (lclock < 3)
-//camera5
-camera {
-    location<50, 5, 0>
-    look_at <50, 2, -70>
-    right x*image_width/image_height
-}
-#case (lclock < 4)
-//camera2
-camera {
-    location<50, 2.5, -4>
-    look_at <50, 4, 0>
-    right x*image_width/image_height
-}
-#case (lclock < 5)
-//camera6
-camera {
-    location<52-clock*2, 5+clock, 0>
-    look_at <50, 2, -70>
-    right x*image_width/image_height
-}
-#case (lclock < 6)
-//camera3
-camera {
-    location<45+clock*6, 2.5, -4>
-    look_at <50, 4, 0>
-    right x*image_width/image_height
-}
-#case (lclock < 7)
-//camera4
-camera {
-    location <30+clock*8, 1.5, -4>
-    look_at <30+clock*4, 2, -6>
-    right (x*image_width/image_height)/2
-}
-#else
-//camera7
-camera {
-    location <50, 2, -70+(clock*50)>
-    look_at <50, 5, 0>
-    right x*image_width/image_height
-}
+#switch(clock)
+  #range (0,1)
+    //camera1
+    camera {
+      location <50+20*sin(clock*5), 2, -70>
+      look_at <50, 5, 0>
+      right x*image_width/image_height
+    }
+    #break
+  #range (1,2)
+    //camera8
+    camera {
+      location<45+clock*2, 5, -(6+clock*50)>
+      look_at <50, 2, -35>
+      right (x*image_width/image_height)/2
+    }
+    #break
+  #range (2,3)
+    //camera5
+    camera {
+      location<50, 5, 0>
+      look_at <50, 2, -70>
+      right x*image_width/image_height
+    }
+    #break
+  #range (3,4)
+    //camera2
+    camera {
+      location<50, 2.5, -4>
+      look_at <50, 4, 0>
+      right x*image_width/image_height
+    }
+    #break
+  #range (4,5)
+    //camera6
+    camera {
+      location<52-clock*2, 5+clock, 0>
+      look_at <50, 2, -70>
+      right x*image_width/image_height
+    }
+    #break
+  #range (5,6)
+    //camera3
+    camera {
+      location<45+clock*6, 2.5, -4>
+      look_at <50, 4, 0>
+      right x*image_width/image_height
+    }
+    #break
+  #range (6,7)
+    //camera4
+    camera {
+      location <30+clock*8, 1.5, -4>
+      look_at <30+clock*4, 2, -6>
+      right (x*image_width/image_height)/2
+    }
+    #break
+  #else
+    //camera7
+    camera {
+      location <50, 2, -70+(clock*50)>
+      look_at <50, 5, 0>
+      right x*image_width/image_height
+    }
 #end
