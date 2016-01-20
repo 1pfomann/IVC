@@ -127,7 +127,7 @@ torus {
   uv_mapping
   pigment {
     image_map {
-      jpg "dj_pult_long.jpg"
+      jpeg "dj_pult_long.jpg"
       map_type 0
       interpolate 2
     }
