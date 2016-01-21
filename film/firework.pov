@@ -36,12 +36,23 @@
 
 #declare Rand_Fire = seed(320498);
 
+#local FireColorArray =
+array[6] {
+  <1,0,0>,
+  <0,1,0>,
+  <0,0,1>,
+  <1,1,0>,
+  <1,1,1>,
+  <1,0.5,0>,
+};
+
+
 #for (i, 0, 100, 1)
-  rocket(66+rand(Rand_Fire)*26, rand(Rand_Fire)*100, <1,1,1>)
+  rocket(66+rand(Rand_Fire)*26, rand(Rand_Fire)*100, FireColorArray[int(rand(Rand_Fire)*6)])
 #end
 
 #for (i, 0, 200, 1)
-  rocket(117+rand(Rand_Fire)*55, rand(Rand_Fire)*100, <1,1,1>)
+  rocket(117+rand(Rand_Fire)*55, rand(Rand_Fire)*100, FireColorArray[int(rand(Rand_Fire)*6)])
 #end
 
 /*
