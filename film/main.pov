@@ -63,4 +63,4 @@ box{<-50,-2,10>,<150,150,-150> pigment{rgbt 1}
 //#include "movingheads_tower.pov"
 //#include "firework.pov"
 #include "dj.pov"
-#include "fans.pov"
+//#include "fans.pov"
