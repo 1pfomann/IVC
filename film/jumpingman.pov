@@ -26,7 +26,7 @@
 
       translate <0, 1.690, 0>
       texture {
-        pigment { color Cloth }
+        pigment { color CapCloth }
       }
     }
 
@@ -53,7 +53,7 @@
       scale <0.220, 0.350, 0.120>
       translate <0. 1.150, 0>
       texture{
-        pigment{ color Cloth }
+        pigment{ color ShirtCloth }
       }
     }
 
@@ -61,21 +61,21 @@
     sphere {
       Intersection_Right_Shoulder, 0.045
       texture {
-        pigment { color Cloth }
+        pigment { color ShirtCloth }
       }
     }
 
     cylinder {
       Intersection_Right_Shoulder, Intersection_Right_Arm, 0.045
       texture {
-        pigment { color Cloth }
+        pigment { color ShirtCloth }
       }
     }
 
     sphere {
       Intersection_Right_Arm, 0.045
       texture {
-        pigment { color Cloth }
+        pigment { color ShirtCloth }
       }
     }
 
@@ -97,21 +97,21 @@
     sphere {
       Intersection_Left_Shoulder, 0.045
       texture {
-        pigment{ color Cloth }
+        pigment{ color ShirtCloth }
       }
     }
 
     cylinder {
       Intersection_Left_Shoulder, Intersection_Left_Arm, 0.045
       texture {
-        pigment { color Cloth }
+        pigment { color ShirtCloth }
       }
     }
 
     sphere {
       Intersection_Left_Arm, 0.045
       texture {
-        pigment { color Cloth }
+        pigment { color ShirtCloth }
       }
     }
 
@@ -133,7 +133,7 @@
     cone {
       <-Legs, 0.850, 0>, 0.075, <-Legs, 0.100, 0>, 0.040
       texture{
-        pigment{ color Cloth }
+        pigment{ color PantsCloth }
       }
     }
 
@@ -146,7 +146,7 @@
       <0.100, 0>,
       <0, 0>
       texture{
-        pigment{ color Cloth }
+        pigment{ color Black }
       }
       rotate <0, 0, 90>
       translate <Legs+0.050, 0, -0.050>
@@ -156,7 +156,7 @@
     cone {
       <Legs, 0.850, 0>, 0.075, <Legs, 0.100, 0>, 0.040
       texture{
-        pigment{ color Cloth }
+        pigment{ color PantsCloth }
       }
     }
 
@@ -169,7 +169,7 @@
       <0.100, 0>,
       <0, 0>
       texture{
-        pigment{ color Cloth }
+        pigment{ color Black }
       }
       rotate <0, 0, 90>
       translate <-Legs+0.050, 0, -0.050>
