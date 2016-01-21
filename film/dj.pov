@@ -3,7 +3,7 @@
 #include "rand.inc"
 
 #declare Legs = 0.1;
-#declare Cloth = White;
+#local Cloth = White;
 
 #declare DJ=
   // Left Arm

@@ -3,7 +3,6 @@
 #include "rand.inc"
 
 #declare Legs = 0.1;
-#declare Cloth = Black;
 
 #declare CameraMan=
   // Left Arm
