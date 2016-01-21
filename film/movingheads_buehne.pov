@@ -1,4 +1,4 @@
-
+#if (ON_MovingheadTower)
 #for (i,0,10,1)
 #local lclock=clock;//-i*0.1;
 light_source {
@@ -15,4 +15,4 @@ light_source {
   point_at <50+cos(pi*(i/10))*abs(sin(lclock*pi*0.5))*10, 2.5+sin(pi*(i/10))*abs(sin(lclock*pi*0.5))*10, 0.3+abs(sin(lclock*pi*0.5))*-15>
 }
 #end
-
+#end
