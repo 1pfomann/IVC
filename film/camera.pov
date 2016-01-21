@@ -47,8 +47,8 @@
 
 //camera6: DJ's view of dancefloor with move
 #declare camera6=camera {
-  location<52-clock*2, 5+clock, 0>
-  look_at <50, 2, -70>
+  location<49+sin(pi*clock*0.5)*2, 3, sin(pi*clock)*0.5>
+  look_at <60-sin(pi*clock*0.5)*20, 0, -70>
   right x*image_width/image_height
 }
 
@@ -67,5 +67,5 @@
 }
 
 camera{
-    camera7
+    camera6
 }
