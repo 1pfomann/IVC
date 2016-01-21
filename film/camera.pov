@@ -40,8 +40,8 @@
 
 //camera5: DJ's view of dancefloor
 #declare camera5=camera {
-  location<50, 5, 0>
-  look_at <50, 2, -70>
+  location<50, 4, 2>
+  look_at <50, 0, -100>
   right x*image_width/image_height
 }
 
@@ -67,5 +67,5 @@
 }
 
 camera{
-    camera6
+    camera5
 }
