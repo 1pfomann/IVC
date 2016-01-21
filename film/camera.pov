@@ -26,7 +26,7 @@
 
 //camera3: DJ pult left to right
 #declare camera3=camera {
-  location<45+clock*6, 2.5, -4>
+  location<45+sin(pi*clock*0.5)*10, 2.5, -4>
   look_at <50, 4, 0>
   right x*image_width/image_height
 }
@@ -67,5 +67,5 @@
 }
 
 camera{
-    camera4
+    camera3
 }
