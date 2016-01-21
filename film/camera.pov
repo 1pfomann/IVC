@@ -33,8 +33,8 @@
 
 //camera4: Guckt hoffentlich auf das Publikum. Von rechts nach links
 #declare camera4=camera {
-  location <30+clock*8, 1.5, -4>
-  look_at <30+clock*4, 2, -6>
+  location <30+sin(pi*clock*0.5)*40, 5, -4>
+  look_at <70-sin(pi*clock*0.5)*40, 1, -10>
   right x*image_width/image_height
 }
 
@@ -67,5 +67,5 @@
 }
 
 camera{
-    camera5
+    camera4
 }
