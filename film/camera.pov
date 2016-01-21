@@ -54,8 +54,8 @@
 
 //camera 7: rear area of dancefloor floating forward
 #declare camera7=camera {
-  location <50, 2, -70+(clock*50)>
-  look_at <50, 5, 0>
+  location <50, 3, -70+(sin(clock*pi*0.5)*67)>
+  look_at <50, 3, 0>
   right x*image_width/image_height
 }
 
@@ -67,5 +67,5 @@
 }
 
 camera{
-    camera8
+    camera7
 }
