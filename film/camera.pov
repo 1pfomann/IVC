@@ -53,8 +53,8 @@
 
 //camera 7: rear area of dancefloor floating forward
 #declare camera7=camera {
-  location <50, 3, -70+(abs(sin(clock*pi*0.5/14))*67)>
-  look_at <50, 3, 0>
+  location <50, 5, -100>
+  look_at <50, 5, 0>
   right x*image_width/image_height
 }
 
@@ -80,5 +80,5 @@ array[9] {
 };
 
 camera{
-  CameraArray[int(rand(CameraRand)*9)]
+  camera7
 }
