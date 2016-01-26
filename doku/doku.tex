@@ -400,7 +400,23 @@ Durch eine Normalisierungsfunktion bleiben die einzelnen Elemten der Arme immer 
 
 
 \section{DJ-Pult}
-TODO
+Das DJ-Pult besteht ganz einfach aus mehreren Boxen, die aufeinander gestapelt sind.
+Die oberste, kleinste Box stellt das Mischpult des DJs dar. Das Mischpult ist ein template, das auf die box gelegt wurde.
 
+\begin{lstlisting}
+  #declare dj_pult=texture {
+    uv_mapping
+    pigment {
+      image_map {
+        jpeg "dj_pult_long.jpg"
+        map_type 0
+        interpolate 2
+      }
+    }
+  }
+\end{lstlisting}
+
+Um das Bild ordentlich auf auf die Box zu legen, mussten wir den Mischpult-Teil auf ein Bild legen, dass die ganze Box umspannt.
+Ansonsten hatten wir verzerrungen des Templates
 
 \end{document}
