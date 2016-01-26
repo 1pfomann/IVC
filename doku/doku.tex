@@ -167,13 +167,116 @@ Der Rest der Szene wurde in eigenen Dateien definiert und per \#include Statemen
 \end{lstlisting}
 
 \section{Kamera}
-TODO: Marco
+Wir haben mehrere camera-Objekte erstellt und diese dann in ein Array gesteckt und mit einer Random-Funktion ausgewaehlt.
+Damit wir nicht immer wieder die gleichen Einstellungen haben, wechselt die Random-Funktion die Kamera schneller, als eine Einstellung lang ist.
+Somit haben wir den Effekt, dass sie Kameras immer wieder andere Positionen haben.
+\begin{lstlisting}
+  //camera 7: rear area of dancefloor floating forward
+  #declare camera7=camera {
+    location <50, 5, -100>
+    look_at <50, 5, 0>
+    right x*image_width/image_height
+  }
+
+  #local CameraRand=seed (clock/5);
+  #local CameraArray=
+  array[9] {
+    camera0,
+    camera1,
+    camera2,
+    camera3,
+    camera4,
+    camera5,
+    camera6,
+    camera7,
+    camera8,
+  };
+
+  camera{
+    CameraArray[int(rand(CameraRand)*9)]
+  }
+\end{lstlisting}
+
 \section{Buehne}
 TODO: Felix
 \section{Laser und Movingheads}
 TODO: Felix
 \section{Fans und DJ}
-TODO. Marco
+Fuer die Fans und den DJ haben wir den Prototypen komplett selbst gebaut.
+
+\subsection{Koerper}
+\begin{itemize}
+  \item Die Cap ist eine union einer intersection von box und sphere mit einer platten sphere
+  \item Der Kopf ist eine einfache Sphere, die auf der x-Achse etwas gestaucht wurde
+  \item Der Hals ist ein einfacher Zylinder
+  \item der Torso ist ein superellipsoid, den wir so geformt haben, dass er einem Oberkoerper nahe kommt
+  \item Die Arme bestehen aus jeweils zwei Zylindern, die jeweils an Schultern und Ellbeugen durch eine sphere verbunden sind
+  \item Die Haende sind einfach jeweils eine sphere
+  \item Die Beine sind jeweils ein Zylinder, der zum Fuss hin schmaler wird
+  \item Die Schuhe sind jeweils ein Prisma
+\end{itemize}
+
+\newpage
+
+\begin{lstlisting}
+  // Cap
+  union {
+    intersection {
+      sphere { <0, 0, 0>, 0.090 scale <0.9, 1, 1.1> }
+      box { <0.100, 0, 0.100>, <-0.100, -0.100, -0.100>
+        inverse }
+    }
+
+    sphere { <0, 0, 0>, 0.090 scale
+      <1, 0.05, 1> translate <0, 0, 0.060> }
+    }
+  }
+
+  // torus
+  superellipsoid{
+    <0.25, 1.00>
+    scale <0.220, 0.350, 0.120>
+  }
+
+  // left leg
+  cone {
+    <Legs, 0.850, 0>, 0.075, <Legs, 0.100, 0>, 0.040
+  }
+
+  prism {
+    0, 0.100, 6,
+    <0, 0>,
+    <0, 0.300>,
+    <0.050, 0.300>,
+    <0.100, 0.100>,
+    <0.100, 0>,
+    <0, 0>
+  }
+\end{lstlisting}
+
+\newpage
+
+\subsection{Arme}
+Um die Arme bei den springenden Fans und dem DJ immer gleich lang zu lassen, sind die Arme durch Variablen verbunden.
+Durch eine Normalisierungsfunktion bleiben die einzelnen Elemten der Arme immer gleich lang.
+
+\begin{lstlisting}
+  // Left Arm
+  #declare Intersection_Left_Shoulder = <-0.200, 1.450, 0>;
+  #declare Intersection_Left_Arm = vnormalize(<0, -3, 0>)
+    *0.300+Intersection_Left_Shoulder;
+  #declare Left_Hand = vnormalize(<0, -2.5, 0>)
+    *0.250+Intersection_Left_Arm;
+
+  //Right Arm
+  #declare Intersection_Right_Shoulder = <0.200, 1.450, 0>;
+  #declare Intersection_Right_Arm = vnormalize(<0, -3, 0>)
+    *0.300+Intersection_Right_Shoulder;
+  #declare Right_Hand = vnormalize(<0, -2.5, 0>)
+    *0.250+Intersection_Right_Arm;
+\end{lstlisting}
+
+
 \section{DJ-Pult}
 TODO: Felix + Marco
 
