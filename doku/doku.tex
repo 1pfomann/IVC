@@ -169,13 +169,135 @@ Der Rest der Szene wurde in eigenen Dateien definiert und per \#include Statemen
 \section{Kamera}
 TODO: Marco
 \section{Buehne}
-TODO: Felix
+Die Bühe wurde aus einer einfachen Kombination aus box, cylinder und torus Elementen zusammengestellt. Um Codeduplikationen zu vermeiden wurden einzelne Teile als object definiert und mit Rotation und Translation an die Richtige stelle gerückt. Die Farben der einzelnen Elemente wurde in der lightcolors.inc definiert.
+Ein Beispiel:
+\begin{lstlisting}
+#declare towersegment=union{
+  box {
+    <0, 0, 0>
+    <0.5, TowerHeight, 0.7>
+  }
+  #for (i, 1, 5, 2)
+  cylinder {
+    <0,0,0>,
+    <0,0.01,0>,
+    4
+    rotate <0,0,90>
+    translate <0,i*4.4,5>
+  }
+  #end
+  torus {
+    4.15, 0.35
+    rotate <0,0,90>
+    translate<0.25,4.4,5>
+    pigment { color C_TowerBot }
+    finish {ambient 1}
+  }
+  torus {
+    4.15,.35
+    rotate <0,0,90>
+    translate<0.25,3*4.4,5>
+    pigment { color C_TowerMid }
+    finish {ambient 1}
+  }
+  torus {
+    4.15,0.35
+    rotate <0,0,90>
+    translate<0.25,5*4.4,5>
+    pigment { color C_TowerHi }
+    finish {ambient 1}
+  }
+
+}
+
+#declare tower=union {
+  object { towersegment }
+  object { towersegment rotate <0,270,0> translate <10,0,0> }
+  object { towersegment rotate <0,180,0> translate <10,0,10> }
+  object { towersegment rotate <0,90,0> translate <0,0,10> }
+}
+
+
+\end{lstlisting}
 \section{Laser und Movingheads}
-TODO: Felix
+Die Laser und Movingheads werden von einer großen Anzahl Spotlights dargestellt.
+Für die Laser wurde ein Makro definiert und mithilfe von for-Schleifen vielfach eingesetzt.
+Als Parameter hatte dieses die Ursprungsposition des Lasers und die Farbe.
+\begin{lstlisting}
+#for (i, 0, lasercount, 1)
+  laser(<37,2,-0.05>, C_RGBLaser)
+#end
+
+\end{lstlisting}
+Das Makro wiederum definiert das Spotlight
+\begin{lstlisting}
+#macro laser (source, lasercolor)
+light_source {
+  <0,0,0>
+  color lasercolor
+  spotlight
+  radius 0.10
+  falloff 0.10
+  tightness 50
+  media_interaction on
+  media_attenuation on
+  point_at <0,0,-100>
+  rotate <0,(i-(lasercount/2))/2,0>    //Spread
+  rotate <0,0,laser_rotate(i)>  //Rotate
+  rotate <laser_tilt(i),0,0> //Tilt
+  translate source
+}
+#end
+\end{lstlisting}
+Die Rotation um x-Achse (Tilt) und z-Achse (Rotate) wurden mit 2 Funktionen berechnet.
+Diese haben verschiene Formeln von denen eine Anhand einer Zufallsvariable eine ausgewählt wird. Sowohl die Funktionen selbst als auch der Seed der Zufallsvariable sind von der Clock abhängig. Hiermit wird eine Flüssige Animation erzeugt sowie der Wechsel der Animationen alle paar Sekunden sichergestellt.
+\begin{lstlisting}
+#local Rand_Lasermode = seed(clock+23);
+
+#declare lasermode_rotate=int(rand(Rand_Lasermode)*3);
+#declare lasermode_tilt=int(rand(Rand_Lasermode)*2);
+
+//Only Nice Sine Wave lasers <3
+#if (lasermode_tilt = 1)
+  #declare lasercount = 50;
+  #declare lasermode_rotate = 0;
+#end
+
+#local laser_rotate = function(i) {
+  #switch (lasermode_rotate)
+  #case(0)
+    0
+    #break
+  #case(1)
+    360*clock
+    #break
+  #case(2)
+    sin(clock*pi)*45
+    #break
+  #else
+    0
+  #end
+}
+
+#local laser_tilt = function(i) {
+  #switch (lasermode_tilt)
+  #case(0)
+    22.5+sin(clock*1.5*pi)*22.5
+    #break
+  #case(1)
+    10+sin(i/lasercount*pi*2+(clock*2))*5
+    #break
+  #else
+    0
+  #end
+}
+
+\end{lstlisting}
+
 \section{Fans und DJ}
 TODO. Marco
 \section{DJ-Pult}
-TODO: Felix + Marco
+TODO
 
 
 \end{document}
